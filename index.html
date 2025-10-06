@@ -1,0 +1,2545 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة التحدي للديكورات الخشبية والأصباغ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* منع لقطات الشاشة والنسخ */
+        * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-user-drag: none !important;
+            -khtml-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -o-user-drag: none !important;
+            user-drag: none !important;
+            pointer-events: auto;
+        }
+        
+        img, svg {
+            -webkit-user-drag: none !important;
+            -khtml-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -o-user-drag: none !important;
+            user-drag: none !important;
+            pointer-events: none;
+        }
+        
+        /* حماية إضافية */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .btn-hover {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-hover:hover::before {
+            left: 100%;
+        }
+        
+        .btn-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)), 
+                        linear-gradient(135deg, #f97316, #ea580c);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f97316, #ea580c);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+        
+        .form-input {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .form-input:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .social-float {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+        
+        .control-buttons {
+            position: fixed;
+            right: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+        
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: none;
+        }
+        
+        .control-btn:hover {
+            transform: scale(1.1) translateX(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .scroll-up { background: linear-gradient(135deg, #10b981, #059669); }
+        .scroll-down { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .theme-toggle { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .gallery-toggle { background: linear-gradient(135deg, #f97316, #ea580c); }
+        
+        /* Dark Theme */
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        body.dark-theme .bg-white {
+            background-color: #2d2d2d !important;
+        }
+        
+        body.dark-theme .bg-gray-50 {
+            background-color: #1a1a1a !important;
+        }
+        
+        body.dark-theme .text-gray-800 {
+            color: #ffffff !important;
+        }
+        
+        body.dark-theme .text-gray-600 {
+            color: #d1d5db !important;
+        }
+        
+        body.dark-theme .text-gray-700 {
+            color: #e5e7eb !important;
+        }
+        
+        body.dark-theme .card-hover {
+            background-color: #374151 !important;
+            border-color: #4b5563 !important;
+        }
+        
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .social-btn:hover {
+            transform: scale(1.1) translateX(5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .snapchat { background: #FFFC00; color: #000; }
+        .tiktok { background: #000; }
+        
+        .chat-window {
+            position: fixed;
+            bottom: 20px;
+            right: 3px;
+            width: 380px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            transform: scale(0.8) translateY(20px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .chat-window.show {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+        
+        .chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 3px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+            z-index: 1001;
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(249, 115, 22, 0.6);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4); }
+            50% { box-shadow: 0 8px 35px rgba(249, 115, 22, 0.8); }
+            100% { box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4); }
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 85%;
+            animation: messageSlide 0.3s ease-out;
+        }
+        
+        @keyframes messageSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            background: linear-gradient(135deg, #e2e8f0, #f1f5f9);
+            align-self: flex-start;
+            border: 1px solid #cbd5e1;
+        }
+        
+        .user-message {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+            box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+        }
+
+        .counter-animation {
+            animation: countUp 2s ease-out;
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .social-float {
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: none;
+                flex-direction: row;
+                justify-content: center;
+                margin: 20px 0;
+            }
+            
+            .chat-window {
+                width: 95%;
+                right: 2.5%;
+                left: 2.5%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- شريط التقدم -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- أيقونات التواصل الاجتماعي العائمة -->
+    <div class="social-float">
+        <a href="https://www.instagram.com/decrat2023?igsh=MWN3c2s1ZmJuMHRzZQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-btn instagram">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+        </a>
+        <a href="https://snapchat.com/t/uBmkTRDx" target="_blank" rel="noopener noreferrer" class="social-btn snapchat">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.404-5.958 1.404-5.958s-.359-.719-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-12C24.007 5.367 18.641.001.017.001z"/>
+            </svg>
+        </a>
+        <a href="https://www.tiktok.com/@m.amro777?_t=ZS-90IhjclLuzY&_r=1" target="_blank" rel="noopener noreferrer" class="social-btn tiktok">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-.88-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- أزرار التحكم العائمة -->
+    <div class="control-buttons">
+        <button onclick="scrollToTop()" class="control-btn scroll-up" title="العودة للأعلى">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+            </svg>
+        </button>
+        <button onclick="scrollToBottom()" class="control-btn scroll-down" title="النزول للأسفل">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="control-btn theme-toggle" title="تغيير المظهر">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+        </button> 
+        <button onclick="openMainGallery()" class="control-btn gallery-toggle" title="معرض الأعمال">
+            📸
+        </button>
+    </div> 
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-reverse space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
+                        <span> 
+                        
+
+  
+    <img src="images/logo.jpg" 
+         alt="لوجو شركة التحدي" 
+         style="width: 45px; height: 45px; vertical-align: middle; border-radius: 8px;">
+ 
+ 
+                        </span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold gradient-text">شركة التحدي</h1>
+                        <p class="text-sm text-gray-600">للديكورات الخشبية والأصباغ</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-reverse space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">الرئيسية</a>
+                    <div class="relative group">
+                        <a href="#services" class="text-gray-700 hover:text-orange-600 transition-colors font-medium flex items-center">
+                            خدماتنا
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <div class="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <div class="py-2">
+                                <a href="#services" onclick="scrollToService('دهانات داخلية')" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">🏠 دهانات داخلية</a>
+                                <a href="#services" onclick="scrollToService('دهانات خارجية')" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">🌧️ دهانات خارجية</a>
+                                <a href="#services" onclick="scrollToService('دهانات مطفية')" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">🌙 دهانات مطفية</a>
+                                <a href="#services" onclick="scrollToService('دهانات لامعة')" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">✨ دهانات لامعة</a>
+                                <a href="#services" onclick="scrollToService('غرف النوم')" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">🛏️ غرف النوم</a>
+                                <a href="#services" onclick="scrollToService('صالات الاستقبال')" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">🛋️ صالات الاستقبال</a>
+                                <a href="#services" onclick="scrollToService('ديوانيات ومجالس')" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">🪑 ديوانيات ومجالس</a>
+                                <a href="#services" onclick="scrollToService('المطابخ')" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">🍳 المطابخ</a>
+                                <a href="#services" onclick="scrollToService('الحمامات')" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">🛁 الحمامات</a>
+                                <a href="#services" onclick="scrollToService('المكاتب المنزلية')" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">💼 المكاتب المنزلية</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#why-choose-us" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">لماذا تختارنا</a>
+                    <a href="javascript:void(0)" onclick="openMainGallery()" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">معرض الأعمال</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">آراء العملاء</a>
+                    <a href="#contact" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">تواصل معنا</a>
+                </nav>
+                <button class="md:hidden text-gray-700" onclick="toggleMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="bg-gradient-to-r from-orange-500 to-orange-600 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
+                <div class="fade-in counter-animation">
+                    <div class="text-3xl md:text-4xl font-bold mb-2" id="visitorsCount">1,247</div>
+                    <div class="text-sm md:text-base opacity-90">زيارات اليوم</div>
+                </div>
+                <div class="fade-in counter-animation">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">850+</div>
+                    <div class="text-sm md:text-base opacity-90">مشروع مكتمل</div>
+                </div>
+                <div class="fade-in counter-animation">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">4.9⭐</div>
+                    <div class="text-sm md:text-base opacity-90">تقييم العملاء</div>
+                </div>
+                <div class="fade-in counter-animation">
+                    <div class="text-3xl md:text-4xl font-bold mb-2">98%</div>
+                    <div class="text-sm md:text-base opacity-90">رضا العملاء</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center text-white">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in">
+                    حوّل بيتك لتحفة ✨
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto slide-in-left">
+                    بألوان وديكورات على ذوقك مع أفضل المواد الخشبية وأحدث تقنيات الأصباغ
+                </p>
+                <div class="flex flex-col md:flex-row gap-6 justify-center items-center slide-in-right">
+                    <button onclick="scrollToContact()" class="btn-hover bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-10 py-4 rounded-full text-lg font-bold shadow-2xl">
+                        🧾 اطلب عرض سعر
+                    </button>
+                    <button onclick="toggleChat()" class="btn-hover bg-white/20 backdrop-blur-sm text-white px-10 py-4 rounded-full text-lg font-bold border-2 border-white/30 hover:bg-white/30">
+                        💬 تحدث مع المساعد الذكي
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gradient-to-br from-orange-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">معرض أعمالنا المميزة</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">شاهد مجموعة من أفضل أعمالنا في الأصباغ والديكورات الخشبية</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- صورة 1 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" onclick="openImageInWhatsApp('غرفة معيشة فاخرة', 'تصميم غرفة معيشة عصرية بألوان هادئة وديكور خشبي أنيق مع إضاءة مخفية وأثاث مودرن')">
+                    <div class="h-64 bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="غرفة معيشة فاخرة" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">غرفة معيشة فاخرة</h3>
+                            <p class="text-sm opacity-90">دهانات داخلية + ديكور خشبي</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-lg font-bold mb-2 text-gray-800">تصميم غرفة معيشة عصرية</h4>
+                        <p class="text-gray-600 mb-4">مزيج رائع من الألوان الهادئة والديكور الخشبي الأنيق مع إضاءة مخفية</p>
+                        <div class="text-center text-orange-600 font-bold">
+                            📱 اضغط للتواصل عبر الواتساب
+                        </div>
+                    </div>
+                </div>
+
+                <!-- صورة 2 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" onclick="openImageInWhatsApp('غرفة نوم رئيسية', 'غرفة نوم بتصميم هادئ مع جدار خشبي خلف السرير وإضاءة LED مخفية وألوان مريحة للنوم')">
+                    <div class="h-64 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="غرفة نوم رئيسية" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">غرفة نوم رئيسية</h3>
+                            <p class="text-sm opacity-90">ديكور خشبي + إضاءة مخفية</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-lg font-bold mb-2 text-gray-800">غرفة نوم بتصميم هادئ</h4>
+                        <p class="text-gray-600 mb-4">جدار خشبي خلف السرير مع إضاءة LED مخفية وألوان مريحة</p>
+                        <div class="text-center text-blue-600 font-bold">
+                            📱 اضغط للتواصل عبر الواتساب
+                        </div>
+                    </div>
+                </div>
+
+                <!-- صورة 3 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" onclick="openImageInWhatsApp('مطبخ عصري', 'مطبخ بتصميم عملي وأنيق مع خزائن خشبية عالية الجودة ودهانات مقاومة للرطوبة وإضاءة مثالية')">
+                    <div class="h-64 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="مطبخ عصري" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">مطبخ عصري</h3>
+                            <p class="text-sm opacity-90">دهانات لامعة + خزائن خشبية</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-lg font-bold mb-2 text-gray-800">مطبخ بتصميم عملي وأنيق</h4>
+                        <p class="text-gray-600 mb-4">خزائن خشبية عالية الجودة مع دهانات مقاومة للرطوبة</p>
+                        <div class="text-center text-green-600 font-bold">
+                            📱 اضغط للتواصل عبر الواتساب
+                        </div>
+                    </div>
+                </div>
+
+                <!-- صورة 4 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" onclick="openImageInWhatsApp('ديوانية تراثية', 'ديوانية بطابع تراثي عصري مع مزج رائع بين التراث والحداثة في التصميم والألوان والديكور')">
+                    <div class="h-64 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="ديوانية تراثية" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">ديوانية تراثية</h3>
+                            <p class="text-sm opacity-90">ديكور خشبي تراثي + دهانات مطفية</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-lg font-bold mb-2 text-gray-800">ديوانية بطابع تراثي عصري</h4>
+                        <p class="text-gray-600 mb-4">مزج رائع بين التراث والحداثة في التصميم</p>
+                        <div class="text-center text-purple-600 font-bold">
+                            📱 اضغط للتواصل عبر الواتساب
+                        </div>
+                    </div>
+                </div>
+
+                <!-- صورة 5 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" onclick="openImageInWhatsApp('واجهة خارجية', 'واجهة منزل بألوان عصرية مع دهانات عالية الجودة مقاومة للعوامل الجوية والأشعة فوق البنفسجية')">
+                    <div class="h-64 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="واجهة خارجية" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">واجهة خارجية</h3>
+                            <p class="text-sm opacity-90">دهانات خارجية مقاومة للطقس</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-lg font-bold mb-2 text-gray-800">واجهة منزل بألوان عصرية</h4>
+                        <p class="text-gray-600 mb-4">دهانات عالية الجودة مقاومة للعوامل الجوية</p>
+                        <div class="text-center text-red-600 font-bold">
+                            📱 اضغط للتواصل عبر الواتساب
+                        </div>
+                    </div>
+                </div>
+
+                <!-- صورة 6 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" onclick="openImageInWhatsApp('حمام عصري', 'حمام بتصميم عملي وأنيق مع مواد عالية الجودة مقاومة للرطوبة والبخار وتصميم مودرن')">
+                    <div class="h-64 bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="حمام عصري" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">حمام عصري</h3>
+                            <p class="text-sm opacity-90">بلاط + دهانات مقاومة للرطوبة</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-lg font-bold mb-2 text-gray-800">حمام بتصميم عملي وأنيق</h4>
+                        <p class="text-gray-600 mb-4">مواد عالية الجودة مقاومة للرطوبة والبخار</p>
+                        <div class="text-center text-teal-600 font-bold">
+                            📱 اضغط للتواصل عبر الواتساب
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-8 text-white max-w-4xl mx-auto">
+                    <div class="text-5xl mb-4">📸</div>
+                    <h3 class="text-3xl font-bold mb-4">شاهد المزيد من أعمالنا</h3>
+                    <p class="text-xl mb-6 opacity-90">لدينا مئات المشاريع المكتملة بنجاح في جميع أنحاء الكويت</p>
+                    <button onclick="requestService('مشاهدة المزيد من الأعمال')" class="bg-white text-orange-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105">
+                        تواصل معنا لرؤية المزيد
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">خدماتنا المتميزة</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">نقدم أفضل خدمات الأصباغ والديكورات الخشبية بجودة عالية وأسعار منافسة</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center relative overflow-hidden">
+                        <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300" fill="none">
+                            <!-- غرفة معيشة داخلية -->
+                            <rect x="50" y="80" width="300" height="180" fill="white" opacity="0.9"/>
+                            <rect x="60" y="90" width="280" height="160" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+                            <!-- أريكة -->
+                            <rect x="80" y="180" width="120" height="50" rx="10" fill="#3b82f6"/>
+                            <rect x="85" y="175" width="110" height="15" rx="5" fill="#1d4ed8"/>
+                            <!-- طاولة قهوة -->
+                            <rect x="120" y="200" width="40" height="25" rx="5" fill="#8b5cf6"/>
+                            <!-- نافذة -->
+                            <rect x="250" y="100" width="80" height="60" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                            <line x1="290" y1="100" x2="290" y2="160" stroke="#3b82f6" stroke-width="1"/>
+                            <line x1="250" y1="130" x2="330" y2="130" stroke="#3b82f6" stroke-width="1"/>
+                            <!-- لوحة على الحائط -->
+                            <rect x="70" y="110" width="50" height="35" fill="#f59e0b" rx="3"/>
+                            <!-- مصباح -->
+                            <circle cx="300" cy="95" r="8" fill="#fbbf24"/>
+                            <line x1="300" y1="87" x2="300" y2="75" stroke="#374151" stroke-width="2"/>
+                        </svg>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-6xl mb-4">🏠</div>
+                            <h3 class="text-2xl font-bold">دهانات داخلية</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">دهانات داخلية</h4>
+                        <p class="text-gray-600 mb-4">ألوان متنوعة وعصرية مع لمسة نهائية مثالية لجميع الغرف</p>
+                        <div class="flex gap-2">
+                            <button onclick="requestService('دهانات داخلية')" class="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                                اطلب هذه الخدمة
+                            </button>
+                            <button onclick="openGalleryModal('دهانات داخلية')" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-3 rounded-lg transition-all" title="معرض الصور">
+                                📸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center relative overflow-hidden">
+                        <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300" fill="none">
+                            <!-- واجهة منزل خارجية -->
+                            <rect x="50" y="120" width="300" height="150" fill="white" opacity="0.9"/>
+                            <!-- الأساس -->
+                            <rect x="40" y="250" width="320" height="20" fill="#6b7280"/>
+                            <!-- الجدران -->
+                            <rect x="60" y="140" width="280" height="110" fill="#f3f4f6" stroke="#10b981" stroke-width="3"/>
+                            <!-- السقف -->
+                            <polygon points="50,140 200,80 350,140" fill="#dc2626"/>
+                            <!-- الباب -->
+                            <rect x="180" y="200" width="40" height="50" fill="#8b5cf6" rx="3"/>
+                            <circle cx="210" cy="225" r="2" fill="#fbbf24"/>
+                            <!-- النوافذ -->
+                            <rect x="100" y="170" width="40" height="30" fill="#dbeafe" stroke="#10b981" stroke-width="2"/>
+                            <rect x="260" y="170" width="40" height="30" fill="#dbeafe" stroke="#10b981" stroke-width="2"/>
+                            <line x1="120" y1="170" x2="120" y2="200" stroke="#10b981" stroke-width="1"/>
+                            <line x1="280" y1="170" x2="280" y2="200" stroke="#10b981" stroke-width="1"/>
+                            <line x1="100" y1="185" x2="140" y2="185" stroke="#10b981" stroke-width="1"/>
+                            <line x1="260" y1="185" x2="300" y2="185" stroke="#10b981" stroke-width="1"/>
+                            <!-- الشمس -->
+                            <circle cx="320" cy="100" r="15" fill="#fbbf24" opacity="0.8"/>
+                            <line x1="320" y1="75" x2="320" y2="85" stroke="#fbbf24" stroke-width="2"/>
+                            <line x1="345" y1="100" x2="335" y2="100" stroke="#fbbf24" stroke-width="2"/>
+                            <line x1="337" y1="83" x2="330" y2="90" stroke="#fbbf24" stroke-width="2"/>
+                            <!-- قطرات المطر -->
+                            <circle cx="150" cy="60" r="2" fill="#3b82f6" opacity="0.6"/>
+                            <circle cx="180" cy="50" r="2" fill="#3b82f6" opacity="0.6"/>
+                            <circle cx="220" cy="65" r="2" fill="#3b82f6" opacity="0.6"/>
+                        </svg>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-6xl mb-4">🌧️</div>
+                            <h3 class="text-2xl font-bold">دهانات خارجية</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">دهانات خارجية</h4>
+                        <p class="text-gray-600 mb-4">مقاومة للعوامل الجوية والأشعة فوق البنفسجية</p>
+                        <div class="flex gap-2">
+                            <button onclick="requestService('دهانات خارجية')" class="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                                اطلب هذه الخدمة
+                            </button>
+                            <button onclick="openGalleryModal('دهانات خارجية')" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-3 rounded-lg transition-all" title="معرض الصور">
+                                📸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center relative overflow-hidden">
+                        <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300" fill="none">
+                            <!-- غرفة نوم بدهان مطفي -->
+                            <rect x="50" y="80" width="300" height="180" fill="white" opacity="0.9"/>
+                            <!-- الجدران بتأثير مطفي -->
+                            <rect x="60" y="90" width="280" height="160" fill="#f8fafc" stroke="#8b5cf6" stroke-width="2"/>
+                            <rect x="65" y="95" width="270" height="150" fill="#f3e8ff" opacity="0.7"/>
+                            <!-- السرير -->
+                            <rect x="120" y="180" width="160" height="60" rx="8" fill="#6366f1"/>
+                            <rect x="125" y="175" width="150" height="20" rx="10" fill="#4f46e5"/>
+                            <!-- وسائد -->
+                            <circle cx="150" cy="185" r="15" fill="#8b5cf6"/>
+                            <circle cx="180" cy="185" r="15" fill="#a855f7"/>
+                            <circle cx="220" cy="185" r="15" fill="#8b5cf6"/>
+                            <circle cx="250" cy="185" r="15" fill="#a855f7"/>
+                            <!-- طاولة جانبية -->
+                            <rect x="90" y="200" width="25" height="35" fill="#6b7280" rx="3"/>
+                            <rect x="285" y="200" width="25" height="35" fill="#6b7280" rx="3"/>
+                            <!-- مصابيح جانبية -->
+                            <circle cx="102" cy="195" r="8" fill="#fbbf24" opacity="0.8"/>
+                            <circle cx="297" cy="195" r="8" fill="#fbbf24" opacity="0.8"/>
+                            <!-- لوحة فنية -->
+                            <rect x="180" y="110" width="60" height="40" fill="#e879f9" rx="5"/>
+                            <rect x="185" y="115" width="50" height="30" fill="#c084fc" rx="3"/>
+                            <!-- تأثير الإضاءة المطفية -->
+                            <ellipse cx="200" cy="150" rx="80" ry="30" fill="#ddd6fe" opacity="0.3"/>
+                        </svg>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-6xl mb-4">🌙</div>
+                            <h3 class="text-2xl font-bold">دهانات مطفية</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">دهانات مطفية</h4>
+                        <p class="text-gray-600 mb-4">لمسة نهائية أنيقة وعصرية تخفي العيوب</p>
+                        <div class="flex gap-2">
+                            <button onclick="requestService('دهانات مطفية')" class="flex-1 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                                اطلب هذه الخدمة
+                            </button>
+                            <button onclick="openGalleryModal('دهانات مطفية')" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-3 rounded-lg transition-all" title="معرض الصور">
+                                📸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center relative overflow-hidden">
+                        <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300" fill="none">
+                            <!-- مطبخ بدهان لامع -->
+                            <rect x="50" y="80" width="300" height="180" fill="white" opacity="0.9"/>
+                            <!-- الجدران اللامعة -->
+                            <rect x="60" y="90" width="280" height="160" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                            <!-- تأثير اللمعان -->
+                            <ellipse cx="120" cy="130" rx="25" ry="15" fill="#fbbf24" opacity="0.6"/>
+                            <ellipse cx="200" cy="160" rx="30" ry="20" fill="#fbbf24" opacity="0.4"/>
+                            <ellipse cx="280" cy="140" rx="20" ry="12" fill="#fbbf24" opacity="0.5"/>
+                            <!-- خزائن المطبخ -->
+                            <rect x="80" y="200" width="240" height="40" fill="#8b5cf6" rx="5"/>
+                            <rect x="85" y="205" width="50" height="30" fill="#a855f7" rx="3"/>
+                            <rect x="145" y="205" width="50" height="30" fill="#a855f7" rx="3"/>
+                            <rect x="205" y="205" width="50" height="30" fill="#a855f7" rx="3"/>
+                            <rect x="265" y="205" width="50" height="30" fill="#a855f7" rx="3"/>
+                            <!-- مقابض الخزائن -->
+                            <circle cx="125" cy="220" r="3" fill="#fbbf24"/>
+                            <circle cx="185" cy="220" r="3" fill="#fbbf24"/>
+                            <circle cx="245" cy="220" r="3" fill="#fbbf24"/>
+                            <circle cx="305" cy="220" r="3" fill="#fbbf24"/>
+                            <!-- حوض المطبخ -->
+                            <ellipse cx="150" cy="190" rx="25" ry="8" fill="#e5e7eb"/>
+                            <ellipse cx="150" cy="188" rx="20" ry="6" fill="#f3f4f6"/>
+                            <!-- صنبور -->
+                            <rect x="148" y="175" width="4" height="15" fill="#6b7280" rx="2"/>
+                            <circle cx="150" cy="175" r="3" fill="#9ca3af"/>
+                            <!-- انعكاسات لامعة -->
+                            <line x1="100" y1="120" x2="130" y2="140" stroke="#fbbf24" stroke-width="3" opacity="0.7"/>
+                            <line x1="220" y1="130" x2="250" y2="150" stroke="#fbbf24" stroke-width="2" opacity="0.6"/>
+                            <line x1="160" y1="110" x2="180" y2="125" stroke="#fbbf24" stroke-width="2" opacity="0.5"/>
+                        </svg>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-6xl mb-4">✨</div>
+                            <h3 class="text-2xl font-bold">دهانات لامعة</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">دهانات لامعة</h4>
+                        <p class="text-gray-600 mb-4">بريق مميز وسهولة في التنظيف والصيانة</p>
+                        <div class="flex gap-2">
+                            <button onclick="requestService('دهانات لامعة')" class="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                                اطلب هذه الخدمة
+                            </button>
+                            <button onclick="openGalleryModal('دهانات لامعة')" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-3 rounded-lg transition-all" title="معرض الصور">
+                                📸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center relative overflow-hidden">
+                        <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300" fill="none">
+                            <!-- غرفة نوم بديكور خشبي -->
+                            <rect x="50" y="80" width="300" height="180" fill="white" opacity="0.9"/>
+                            <!-- الجدران -->
+                            <rect x="60" y="90" width="280" height="160" fill="#fef7ed" stroke="#ea580c" stroke-width="2"/>
+                            <!-- لوح خشبي خلف السرير -->
+                            <rect x="80" y="100" width="240" height="80" fill="#92400e" rx="5"/>
+                            <rect x="85" y="105" width="230" height="70" fill="#a16207" rx="3"/>
+                            <!-- خطوط الخشب -->
+                            <line x1="85" y1="120" x2="315" y2="120" stroke="#78350f" stroke-width="1"/>
+                            <line x1="85" y1="140" x2="315" y2="140" stroke="#78350f" stroke-width="1"/>
+                            <line x1="85" y1="160" x2="315" y2="160" stroke="#78350f" stroke-width="1"/>
+                            <!-- السرير -->
+                            <rect x="120" y="180" width="160" height="60" rx="8" fill="#ea580c"/>
+                            <rect x="125" y="175" width="150" height="20" rx="10" fill="#dc2626"/>
+                            <!-- وسائد -->
+                            <ellipse cx="150" cy="185" rx="18" ry="12" fill="#fed7aa"/>
+                            <ellipse cx="180" cy="185" rx="18" ry="12" fill="#fdba74"/>
+                            <ellipse cx="220" cy="185" rx="18" ry="12" fill="#fed7aa"/>
+                            <ellipse cx="250" cy="185" rx="18" ry="12" fill="#fdba74"/>
+                            <!-- طاولات جانبية خشبية -->
+                            <rect x="85" y="200" width="30" height="35" fill="#92400e" rx="3"/>
+                            <rect x="285" y="200" width="30" height="35" fill="#92400e" rx="3"/>
+                            <!-- أدراج الطاولات -->
+                            <rect x="88" y="210" width="24" height="8" fill="#a16207" rx="1"/>
+                            <rect x="88" y="220" width="24" height="8" fill="#a16207" rx="1"/>
+                            <rect x="288" y="210" width="24" height="8" fill="#a16207" rx="1"/>
+                            <rect x="288" y="220" width="24" height="8" fill="#a16207" rx="1"/>
+                            <!-- مقابض -->
+                            <circle cx="108" cy="214" r="1.5" fill="#78350f"/>
+                            <circle cx="108" cy="224" r="1.5" fill="#78350f"/>
+                            <circle cx="308" cy="214" r="1.5" fill="#78350f"/>
+                            <circle cx="308" cy="224" r="1.5" fill="#78350f"/>
+                            <!-- مصابيح -->
+                            <circle cx="100" cy="195" r="8" fill="#fbbf24" opacity="0.8"/>
+                            <circle cx="300" cy="195" r="8" fill="#fbbf24" opacity="0.8"/>
+                            <!-- خزانة ملابس خشبية -->
+                            <rect x="250" y="120" width="60" height="80" fill="#92400e" rx="3"/>
+                            <rect x="255" y="125" width="50" height="70" fill="#a16207" rx="2"/>
+                            <line x1="280" y1="125" x2="280" y2="195" stroke="#78350f" stroke-width="1"/>
+                            <circle cx="270" cy="160" r="2" fill="#78350f"/>
+                            <circle cx="290" cy="160" r="2" fill="#78350f"/>
+                        </svg>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-6xl mb-4">🛏️</div>
+                            <h3 class="text-2xl font-bold">غرف النوم</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">غرف النوم</h4>
+                        <p class="text-gray-600 mb-4">تصاميم خشبية هادئة ومريحة لنوم أفضل</p>
+                        <div class="flex gap-2">
+                            <button onclick="requestService('ديكور غرف النوم')" class="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                                اطلب هذه الخدمة
+                            </button>
+                            <button onclick="openGalleryModal('غرف النوم')" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-3 rounded-lg transition-all" title="معرض الصور">
+                                📸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center relative overflow-hidden">
+                        <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300" fill="none">
+                            <!-- صالة استقبال فاخرة -->
+                            <rect x="50" y="80" width="300" height="180" fill="white" opacity="0.9"/>
+                            <!-- الجدران -->
+                            <rect x="60" y="90" width="280" height="160" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+                            <!-- جدار خشبي مميز -->
+                            <rect x="60" y="90" width="80" height="160" fill="#92400e"/>
+                            <rect x="65" y="95" width="70" height="150" fill="#a16207"/>
+                            <!-- خطوط الخشب العمودية -->
+                            <line x1="80" y1="95" x2="80" y2="245" stroke="#78350f" stroke-width="2"/>
+                            <line x1="100" y1="95" x2="100" y2="245" stroke="#78350f" stroke-width="2"/>
+                            <line x1="120" y1="95" x2="120" y2="245" stroke="#78350f" stroke-width="2"/>
+                            <!-- أريكة كبيرة -->
+                            <rect x="160" y="180" width="140" height="60" rx="15" fill="#dc2626"/>
+                            <rect x="165" y="175" width="130" height="25" rx="12" fill="#b91c1c"/>
+                            <!-- وسائد الأريكة -->
+                            <ellipse cx="190" cy="185" rx="20" ry="15" fill="#fca5a5"/>
+                            <ellipse cx="230" cy="185" rx="20" ry="15" fill="#f87171"/>
+                            <ellipse cx="270" cy="185" rx="20" ry="15" fill="#fca5a5"/>
+                            <!-- طاولة قهوة خشبية -->
+                            <ellipse cx="230" cy="210" rx="40" ry="20" fill="#92400e"/>
+                            <ellipse cx="230" cy="208" rx="35" ry="18" fill="#a16207"/>
+                            <!-- أرجل الطاولة -->
+                            <rect x="205" y="215" width="6" height="20" fill="#78350f"/>
+                            <rect x="249" y="215" width="6" height="20" fill="#78350f"/>
+                            <!-- تلفزيون على الحائط -->
+                            <rect x="70" y="130" width="60" height="35" fill="#1f2937" rx="3"/>
+                            <rect x="75" y="135" width="50" height="25" fill="#374151" rx="2"/>
+                            <!-- إضاءة مخفية -->
+                            <rect x="65" y="245" width="70" height="5" fill="#fbbf24" opacity="0.8"/>
+                            <!-- كراسي جانبية -->
+                            <rect x="310" y="190" width="25" height="40" rx="8" fill="#7c2d12"/>
+                            <rect x="312" y="185" width="21" height="15" rx="5" fill="#92400e"/>
+                            <!-- سجادة -->
+                            <ellipse cx="230" cy="235" rx="80" ry="15" fill="#7c2d12" opacity="0.6"/>
+                            <!-- نباتات -->
+                            <circle cx="320" cy="160" r="12" fill="#16a34a"/>
+                            <rect x="318" y="172" width="4" height="15" fill="#92400e"/>
+                        </svg>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-6xl mb-4">🛋️</div>
+                            <h3 class="text-2xl font-bold">صالات الاستقبال</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">صالات الاستقبال</h4>
+                        <p class="text-gray-600 mb-4">أناقة وفخامة بالخشب الطبيعي</p>
+                        <div class="flex gap-2">
+                            <button onclick="requestService('ديكور صالات الاستقبال')" class="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                                اطلب هذه الخدمة
+                            </button>
+                            <button onclick="openGalleryModal('صالات الاستقبال')" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-3 rounded-lg transition-all" title="معرض الصور">
+                                📸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center relative overflow-hidden">
+                        <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300" fill="none">
+                            <!-- ديوانية تراثية -->
+                            <rect x="50" y="80" width="300" height="180" fill="white" opacity="0.9"/>
+                            <!-- الجدران -->
+                            <rect x="60" y="90" width="280" height="160" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+                            <!-- جدار خشبي تراثي -->
+                            <rect x="60" y="90" width="280" height="60" fill="#92400e"/>
+                            <rect x="65" y="95" width="270" height="50" fill="#a16207"/>
+                            <!-- نقوش تراثية -->
+                            <rect x="80" y="105" width="40" height="30" fill="#78350f" rx="5"/>
+                            <rect x="85" y="110" width="30" height="20" fill="#a16207" rx="3"/>
+                            <rect x="140" y="105" width="40" height="30" fill="#78350f" rx="5"/>
+                            <rect x="145" y="110" width="30" height="20" fill="#a16207" rx="3"/>
+                            <rect x="200" y="105" width="40" height="30" fill="#78350f" rx="5"/>
+                            <rect x="205" y="110" width="30" height="20" fill="#a16207" rx="3"/>
+                            <rect x="260" y="105" width="40" height="30" fill="#78350f" rx="5"/>
+                            <rect x="265" y="110" width="30" height="20" fill="#a16207" rx="3"/>
+                            <!-- مقاعد على شكل حرف U -->
+                            <rect x="80" y="200" width="240" height="40" rx="20" fill="#4f46e5"/>
+                            <rect x="85" y="195" width="230" height="20" rx="10" fill="#3730a3"/>
+                            <!-- مساند الظهر -->
+                            <rect x="80" y="180" width="20" height="40" rx="10" fill="#4338ca"/>
+                            <rect x="320" y="180" width="20" height="40" rx="10" fill="#4338ca"/>
+                            <!-- وسائد تراثية -->
+                            <ellipse cx="120" cy="205" rx="15" ry="10" fill="#c7d2fe"/>
+                            <ellipse cx="160" cy="205" rx="15" ry="10" fill="#a5b4fc"/>
+                            <ellipse cx="200" cy="205" rx="15" ry="10" fill="#c7d2fe"/>
+                            <ellipse cx="240" cy="205" rx="15" ry="10" fill="#a5b4fc"/>
+                            <ellipse cx="280" cy="205" rx="15" ry="10" fill="#c7d2fe"/>
+                            <!-- طاولة وسط دائرية -->
+                            <circle cx="200" cy="230" r="25" fill="#92400e"/>
+                            <circle cx="200" cy="228" r="20" fill="#a16207"/>
+                            <!-- أرجل الطاولة -->
+                            <rect x="185" y="235" width="6" height="15" fill="#78350f"/>
+                            <rect x="209" y="235" width="6" height="15" fill="#78350f"/>
+                            <!-- دلة قهوة تراثية -->
+                            <ellipse cx="200" cy="225" rx="8" ry="6" fill="#fbbf24"/>
+                            <rect x="198" y="220" width="4" height="8" fill="#f59e0b"/>
+                            <circle cx="200" cy="220" r="2" fill="#d97706"/>
+                            <!-- فناجين -->
+                            <circle cx="185" cy="228" r="3" fill="#fbbf24"/>
+                            <circle cx="215" cy="228" r="3" fill="#fbbf24"/>
+                            <!-- إضاءة تراثية -->
+                            <circle cx="200" cy="100" r="15" fill="#fbbf24" opacity="0.8"/>
+                            <rect x="195" y="85" width="10" height="15" fill="#d97706"/>
+                            <!-- سجادة تراثية -->
+                            <ellipse cx="200" cy="245" rx="100" ry="15" fill="#7c2d12" opacity="0.6"/>
+                        </svg>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-6xl mb-4">🪑</div>
+                            <h3 class="text-2xl font-bold">ديوانيات ومجالس</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">ديوانيات ومجالس</h4>
+                        <p class="text-gray-600 mb-4">تصاميم تراثية بلمسة عصرية</p>
+                        <div class="flex gap-2">
+                            <button onclick="requestService('ديوانيات ومجالس')" class="flex-1 bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                                اطلب هذه الخدمة
+                            </button>
+                            <button onclick="openGalleryModal('ديوانيات ومجالس')" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-3 rounded-lg transition-all" title="معرض الصور">
+                                📸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- أقسام جديدة -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center relative overflow-hidden">
+                        <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300" fill="none">
+                            <!-- مطبخ عصري -->
+                            <rect x="50" y="80" width="300" height="180" fill="white" opacity="0.9"/>
+                            <!-- الجدران -->
+                            <rect x="60" y="90" width="280" height="160" fill="#f0fdfa" stroke="#0d9488" stroke-width="2"/>
+                            <!-- خزائن علوية -->
+                            <rect x="80" y="100" width="240" height="50" fill="#0d9488" rx="5"/>
+                            <rect x="85" y="105" width="230" height="40" fill="#14b8a6" rx="3"/>
+                            <!-- أبواب الخزائن -->
+                            <rect x="90" y="110" width="35" height="30" fill="#0f766e" rx="2"/>
+                            <rect x="130" y="110" width="35" height="30" fill="#0f766e" rx="2"/>
+                            <rect x="170" y="110" width="35" height="30" fill="#0f766e" rx="2"/>
+                            <rect x="210" y="110" width="35" height="30" fill="#0f766e" rx="2"/>
+                            <rect x="250" y="110" width="35" height="30" fill="#0f766e" rx="2"/>
+                            <rect x="290" y="110" width="20" height="30" fill="#0f766e" rx="2"/>
+                            <!-- مقابض -->
+                            <circle cx="120" cy="125" r="2" fill="#fbbf24"/>
+                            <circle cx="160" cy="125" r="2" fill="#fbbf24"/>
+                            <circle cx="200" cy="125" r="2" fill="#fbbf24"/>
+                            <circle cx="240" cy="125" r="2" fill="#fbbf24"/>
+                            <circle cx="280" cy="125" r="2" fill="#fbbf24"/>
+                            <!-- سطح العمل -->
+                            <rect x="80" y="180" width="240" height="15" fill="#6b7280" rx="2"/>
+                            <!-- خزائن سفلية -->
+                            <rect x="80" y="195" width="240" height="50" fill="#0d9488" rx="5"/>
+                            <rect x="85" y="200" width="230" height="40" fill="#14b8a6" rx="3"/>
+                            <!-- أبواب الخزائن السفلية -->
+                            <rect x="90" y="205" width="35" height="30" fill="#0f766e" rx="2"/>
+                            <rect x="130" y="205" width="35" height="30" fill="#0f766e" rx="2"/>
+                            <rect x="170" y="205" width="35" height="30" fill="#0f766e" rx="2"/>
+                            <rect x="210" y="205" width="35" height="30" fill="#0f766e" rx="2"/>
+                            <rect x="250" y="205" width="35" height="30" fill="#0f766e" rx="2"/>
+                            <rect x="290" y="205" width="20" height="30" fill="#0f766e" rx="2"/>
+                            <!-- حوض -->
+                            <ellipse cx="200" cy="187" rx="30" ry="8" fill="#e5e7eb"/>
+                            <ellipse cx="200" cy="185" rx="25" ry="6" fill="#f3f4f6"/>
+                            <!-- صنبور -->
+                            <rect x="198" y="170" width="4" height="15" fill="#6b7280" rx="2"/>
+                            <circle cx="200" cy="170" r="3" fill="#9ca3af"/>
+                            <!-- جزيرة المطبخ -->
+                            <rect x="150" y="220" width="100" height="25" fill="#0d9488" rx="3"/>
+                            <rect x="155" y="225" width="90" height="15" fill="#14b8a6" rx="2"/>
+                        </svg>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-6xl mb-4">🍳</div>
+                            <h3 class="text-2xl font-bold">المطابخ</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">المطابخ</h4>
+                        <p class="text-gray-600 mb-4">تصاميم عملية وأنيقة للمطابخ العصرية</p>
+                        <div class="flex gap-2">
+                            <button onclick="requestService('ديكور المطابخ')" class="flex-1 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                                اطلب هذه الخدمة
+                            </button>
+                            <button onclick="openGalleryModal('المطابخ')" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-3 rounded-lg transition-all" title="معرض الصور">
+                                📸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center relative overflow-hidden">
+                        <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300" fill="none">
+                            <!-- حمام عصري -->
+                            <rect x="50" y="80" width="300" height="180" fill="white" opacity="0.9"/>
+                            <!-- الجدران -->
+                            <rect x="60" y="90" width="280" height="160" fill="#fdf2f8" stroke="#ec4899" stroke-width="2"/>
+                            <!-- بلاط الحائط -->
+                            <rect x="60" y="90" width="280" height="80" fill="#f9a8d4" opacity="0.3"/>
+                            <!-- خطوط البلاط -->
+                            <line x1="60" y1="110" x2="340" y2="110" stroke="#ec4899" stroke-width="1" opacity="0.5"/>
+                            <line x1="60" y1="130" x2="340" y2="130" stroke="#ec4899" stroke-width="1" opacity="0.5"/>
+                            <line x1="60" y1="150" x2="340" y2="150" stroke="#ec4899" stroke-width="1" opacity="0.5"/>
+                            <!-- حوض الاستحمام -->
+                            <ellipse cx="150" cy="200" rx="60" ry="25" fill="#e5e7eb"/>
+                            <ellipse cx="150" cy="198" rx="55" ry="23" fill="#f3f4f6"/>
+                            <ellipse cx="150" cy="196" rx="50" ry="20" fill="#ffffff"/>
+                            <!-- صنبور الحوض -->
+                            <rect x="120" y="180" width="6" height="20" fill="#6b7280" rx="3"/>
+                            <circle cx="123" cy="180" r="4" fill="#9ca3af"/>
+                            <!-- مرآة -->
+                            <rect x="250" y="110" width="70" height="50" fill="#ddd6fe" rx="5"/>
+                            <rect x="255" y="115" width="60" height="40" fill="#e0e7ff" rx="3"/>
+                            <!-- حوض الغسيل -->
+                            <rect x="250" y="180" width="70" height="40" fill="#e5e7eb" rx="5"/>
+                            <ellipse cx="285" cy="195" rx="25" ry="8" fill="#f3f4f6"/>
+                            <ellipse cx="285" cy="193" rx="20" ry="6" fill="#ffffff"/>
+                            <!-- صنبور حوض الغسيل -->
+                            <rect x="283" y="175" width="4" height="15" fill="#6b7280" rx="2"/>
+                            <circle cx="285" cy="175" r="3" fill="#9ca3af"/>
+                            <!-- خزانة تحت الحوض -->
+                            <rect x="250" y="220" width="70" height="25" fill="#ec4899" rx="3"/>
+                            <rect x="255" y="225" width="60" height="15" fill="#f472b6" rx="2"/>
+                            <!-- مقبض الخزانة -->
+                            <circle cx="285" cy="232" r="2" fill="#fbbf24"/>
+                            <!-- دش -->
+                            <circle cx="100" cy="100" r="8" fill="#6b7280"/>
+                            <circle cx="100" cy="100" r="6" fill="#9ca3af"/>
+                            <!-- قطرات الماء -->
+                            <circle cx="95" cy="120" r="1" fill="#3b82f6" opacity="0.7"/>
+                            <circle cx="100" cy="125" r="1" fill="#3b82f6" opacity="0.7"/>
+                            <circle cx="105" cy="118" r="1" fill="#3b82f6" opacity="0.7"/>
+                        </svg>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-6xl mb-4">🛁</div>
+                            <h3 class="text-2xl font-bold">الحمامات</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">الحمامات</h4>
+                        <p class="text-gray-600 mb-4">تصاميم عصرية وعملية للحمامات</p>
+                        <div class="flex gap-2">
+                            <button onclick="requestService('ديكور الحمامات')" class="flex-1 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                                اطلب هذه الخدمة
+                            </button>
+                            <button onclick="openGalleryModal('الحمامات')" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-3 rounded-lg transition-all" title="معرض الصور">
+                                📸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center relative overflow-hidden">
+                        <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300" fill="none">
+                            <!-- مكتب منزلي -->
+                            <rect x="50" y="80" width="300" height="180" fill="white" opacity="0.9"/>
+                            <!-- الجدران -->
+                            <rect x="60" y="90" width="280" height="160" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+                            <!-- مكتب -->
+                            <rect x="100" y="180" width="200" height="60" fill="#059669" rx="5"/>
+                            <rect x="105" y="175" width="190" height="15" fill="#047857" rx="3"/>
+                            <!-- أرجل المكتب -->
+                            <rect x="110" y="240" width="8" height="20" fill="#065f46"/>
+                            <rect x="280" y="240" width="8" height="20" fill="#065f46"/>
+                            <!-- كمبيوتر -->
+                            <rect x="180" y="160" width="40" height="25" fill="#1f2937" rx="2"/>
+                            <rect x="185" y="165" width="30" height="15" fill="#374151" rx="1"/>
+                            <!-- قاعدة الشاشة -->
+                            <rect x="195" y="185" width="10" height="8" fill="#6b7280"/>
+                            <rect x="190" y="193" width="20" height="3" fill="#6b7280"/>
+                            <!-- لوحة المفاتيح -->
+                            <rect x="170" y="200" width="60" height="15" fill="#e5e7eb" rx="2"/>
+                            <rect x="175" y="205" width="50" height="5" fill="#d1d5db" rx="1"/>
+                            <!-- فأرة -->
+                            <ellipse cx="250" cy="207" rx="8" ry="5" fill="#9ca3af"/>
+                            <!-- رفوف كتب -->
+                            <rect x="80" y="100" width="15" height="120" fill="#059669"/>
+                            <rect x="85" y="105" width="10" height="110" fill="#10b981"/>
+                            <!-- كتب -->
+                            <rect x="87" y="110" width="6" height="15" fill="#dc2626"/>
+                            <rect x="87" y="130" width="6" height="12" fill="#2563eb"/>
+                            <rect x="87" y="145" width="6" height="18" fill="#7c3aed"/>
+                            <rect x="87" y="168" width="6" height="14" fill="#ea580c"/>
+                            <rect x="87" y="185" width="6" height="16" fill="#16a34a"/>
+                            <!-- كرسي -->
+                            <rect x="150" y="220" width="40" height="25" rx="8" fill="#059669"/>
+                            <rect x="155" y="215" width="30" height="15" rx="5" fill="#10b981"/>
+                            <!-- مسند الظهر -->
+                            <rect x="160" y="200" width="20" height="25" rx="10" fill="#047857"/>
+                            <!-- أرجل الكرسي -->
+                            <rect x="165" y="245" width="4" height="15" fill="#065f46"/>
+                            <rect x="175" y="245" width="4" height="15" fill="#065f46"/>
+                            <!-- نبتة -->
+                            <circle cx="320" cy="200" r="15" fill="#16a34a"/>
+                            <rect x="318" y="215" width="4" height="20" fill="#92400e"/>
+                            <!-- إضاءة مكتبية -->
+                            <rect x="120" y="140" width="4" height="25" fill="#6b7280"/>
+                            <ellipse cx="122" cy="140" rx="12" ry="8" fill="#fbbf24" opacity="0.8"/>
+                        </svg>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-6xl mb-4">💼</div>
+                            <h3 class="text-2xl font-bold">المكاتب المنزلية</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">المكاتب المنزلية</h4>
+                        <p class="text-gray-600 mb-4">مساحات عمل مريحة ومحفزة للإنتاجية</p>
+                        <div class="flex gap-2">
+                            <button onclick="requestService('ديكور المكاتب المنزلية')" class="flex-1 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                                اطلب هذه الخدمة
+                            </button>
+                            <button onclick="openGalleryModal('المكاتب المنزلية')" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-3 rounded-lg transition-all" title="معرض الصور">
+                                📸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">لماذا تختارنا؟</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">نحن الخيار الأمثل لتحويل منزلك إلى تحفة فنية بأعلى معايير الجودة والاحترافية</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- خبرة واسعة -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl text-white">🏆</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">خبرة +15 سنة</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">خبرة طويلة في مجال الأصباغ والديكورات الخشبية مع أكثر من 850 مشروع مكتمل بنجاح</p>
+                </div>
+
+                <!-- جودة عالمية -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl text-white">🌟</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">مواد عالمية</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">نستخدم أفضل المواد العالمية من جوتن ودولكس وخشب طبيعي 100% مقاوم للرطوبة</p>
+                </div>
+
+                <!-- فريق محترف -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl text-white">👥</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">فريق محترف</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">فريق من الخبراء والحرفيين المهرة مع شهادات معتمدة في التصميم والتنفيذ</p>
+                </div>
+
+                <!-- ضمان شامل -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl text-white">🛡️</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">ضمان شامل</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">ضمان سنتين على الأعمال الخشبية وسنة على الدهانات مع صيانة مجانية</p>
+                </div>
+
+                <!-- أسعار منافسة -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl text-white">💰</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">أسعار منافسة</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">أفضل الأسعار في السوق مع إمكانية التقسيط المريح وعروض خاصة للمشاريع الكبيرة</p>
+                </div>
+
+                <!-- خدمة متميزة -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl text-white">⚡</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">خدمة سريعة</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">التزام بالمواعيد وتسليم في الوقت المحدد مع متابعة يومية وتحديثات مستمرة</p>
+                </div>
+            </div>
+
+            <!-- إحصائيات مميزة -->
+            <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-8 text-white">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="fade-in">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">850+</div>
+                        <div class="text-lg opacity-90">مشروع مكتمل</div>
+                    </div>
+                    <div class="fade-in">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">98%</div>
+                        <div class="text-lg opacity-90">رضا العملاء</div>
+                    </div>
+                    <div class="fade-in">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">15+</div>
+                        <div class="text-lg opacity-90">سنة خبرة</div>
+                    </div>
+                    <div class="fade-in">
+                        <div class="text-4xl md:text-5xl font-bold mb-2">24/7</div>
+                        <div class="text-lg opacity-90">خدمة عملاء</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">آراء عملائنا</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">ثقة العملاء هي أهم إنجازاتنا وأكبر دافع لتطوير خدماتنا</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-gradient-to-br from-orange-50 to-white rounded-2xl p-8 shadow-lg border border-orange-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                            أ
+                        </div>
+                        <div class="mr-4">
+                            <h4 class="text-xl font-bold text-gray-800">أحمد محمد السعيد</h4>
+                            <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-lg leading-relaxed">"شغل ممتاز وخدمة راقية. غيروا شكل البيت تماماً والنتيجة فاقت توقعاتي. الديكورات الخشبية رائعة!"</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 shadow-lg border border-blue-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                            ف
+                        </div>
+                        <div class="mr-4">
+                            <h4 class="text-xl font-bold text-gray-800">فاطمة علي الزهراني</h4>
+                            <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-lg leading-relaxed">"فريق محترف والتزام بالمواعيد. أنصح الجميع بالتعامل معهم. الأسعار معقولة والجودة عالية."</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-green-50 to-white rounded-2xl p-8 shadow-lg border border-green-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                            خ
+                        </div>
+                        <div class="mr-4">
+                            <h4 class="text-xl font-bold text-gray-800">خالد عبدالله القحطاني</h4>
+                            <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-lg leading-relaxed">"تم إنجاز العمل في الوقت المحدد بجودة ممتازة. الديكورات الخشبية أضافت لمسة فخامة للمنزل."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">تواصل معنا</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">احصل على استشارة مجانية وعرض سعر مخصص لمشروعك</p>
+            </div>
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div class="slide-in-left">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-8 gradient-text">معلومات التواصل</h3>
+                        <div class="space-y-6">
+                            <div class="card-hover flex items-center space-x-reverse space-x-4 p-6 bg-gradient-to-r from-orange-50 to-orange-100 rounded-2xl shadow-lg">
+                                <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-gray-800">الهاتف</h4>
+                                    <p class="text-lg text-gray-600">+965 50 291 741</p>
+                                </div>
+                            </div>
+                            <div class="card-hover flex items-center space-x-reverse space-x-4 p-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl shadow-lg">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-gray-800">الموقع</h4>
+                                    <p class="text-lg text-gray-600">دولة الكويت</p>
+                                </div>
+                            </div>
+                            <div class="card-hover flex items-center space-x-reverse space-x-4 p-6 bg-gradient-to-r from-green-50 to-green-100 rounded-2xl shadow-lg">
+                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-gray-800">ساعات العمل</h4>
+                                    <p class="text-lg text-gray-600">السبت - الخميس: 8 ص - 8 م</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-in-right">
+                        <form class="card-hover bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 shadow-2xl border border-gray-100" onsubmit="submitForm(event)">
+                            <h3 class="text-3xl font-bold text-gray-800 mb-8 gradient-text text-center">أرسل لنا طلبك</h3>
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label class="block text-gray-700 font-bold mb-3 text-lg">الاسم الكامل *</label>
+                                    <input type="text" name="name" class="form-input w-full px-4 py-4 rounded-xl focus:outline-none text-lg" placeholder="أدخل اسمك الكامل" required>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-bold mb-3 text-lg">رقم الهاتف *</label>
+                                    <input type="tel" name="phone" class="form-input w-full px-4 py-4 rounded-xl focus:outline-none text-lg" placeholder="05xxxxxxxx" required>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-bold mb-3 text-lg">نوع الخدمة المطلوبة *</label>
+                                <select name="service" class="form-input w-full px-4 py-4 rounded-xl focus:outline-none text-lg" required>
+                                    <option value="">اختر نوع الخدمة</option>
+                                    <option value="أصباغ ودهانات فقط">أصباغ ودهانات فقط</option>
+                                    <option value="ديكورات خشبية فقط">ديكورات خشبية فقط</option>
+                                    <option value="أصباغ وديكورات معاً">أصباغ وديكورات معاً</option>
+                                    <option value="استشارة تصميم">استشارة تصميم</option>
+                                </select>
+                            </div>
+                            <div class="mb-8">
+                                <label class="block text-gray-700 font-bold mb-3 text-lg">تفاصيل المشروع *</label>
+                                <textarea name="details" rows="4" class="form-input w-full px-4 py-4 rounded-xl focus:outline-none resize-none text-lg" placeholder="اكتب تفاصيل مشروعك، المساحة، نوع الغرف، والألوان المفضلة..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-hover w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-4 rounded-xl text-xl font-bold shadow-2xl">
+                                <span class="flex items-center justify-center space-x-reverse space-x-3">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                    </svg>
+                                    <span>إرسال الطلب عبر الواتساب</span>
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-reverse space-x-3 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-2xl">
+    <img src="images/logo.jpg" 
+         alt="لوجو شركة التحدي" 
+         style="width: 45px; height: 45px; vertical-align: middle; border-radius: 8px;">
+  </span>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-bold">شركة التحدي</h3>
+                            <p class="text-orange-300">للديكورات الخشبية والأصباغ</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">شركة متخصصة في الأصباغ والديكورات الخشبية بأعلى معايير الجودة والاحترافية. نحول أحلامك إلى واقع بأيدي خبراء متخصصين.</p>
+                    <div class="flex space-x-reverse space-x-4">
+                        <a href="https://www.instagram.com/decrat2023?igsh=MWN3c2s1ZmJuMHRzZQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://snapchat.com/t/uBmkTRDx" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.404-5.958 1.404-5.958s-.359-.719-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-12C24.007 5.367 18.641.001.017.001z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@m.amro777?_t=ZS-90IhjclLuzY&_r=1" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-.88-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-orange-300">خدماتنا</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="hover:text-orange-300 transition-colors">• دهانات داخلية وخارجية</li>
+                        <li class="hover:text-orange-300 transition-colors">• ديكورات خشبية عصرية</li>
+                        <li class="hover:text-orange-300 transition-colors">• جبس وإضاءة مخفية</li>
+                        <li class="hover:text-orange-300 transition-colors">• أعمال خشب ورفوف</li>
+                        <li class="hover:text-orange-300 transition-colors">• استشارات تصميم</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-orange-300">تواصل معنا</h4>
+                    <div class="space-y-3 text-gray-300">
+                        <p class="flex items-center space-x-reverse space-x-2">
+                            <span>📱</span>
+                            <span>+965 50 291 741</span>
+                        </p>
+                        <p class="flex items-center space-x-reverse space-x-2">
+                            <span>📍</span>
+                            <span>دولة الكويت</span>
+                        </p>
+                        <p class="flex items-center space-x-reverse space-x-2">
+                            <span>🕐</span>
+                            <span>السبت - الخميس: 8 ص - 8 م</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-gray-400 text-lg">© 2024 شركة التحدي للديكورات الخشبية والأصباغ. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Toggle Button -->
+    <div class="chat-toggle" onclick="toggleChat()">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl max-w-6xl max-h-[90vh] w-full mx-4 overflow-hidden">
+            <div class="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-4 flex justify-between items-center">
+                <h3 class="font-bold text-xl" id="galleryTitle">📸 معرض الأعمال</h3>
+                <button onclick="closeGalleryModal()" class="text-white hover:text-gray-200 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-[calc(90vh-80px)]" id="galleryContent">
+                <!-- Gallery content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Window -->
+    <div class="chat-window" id="chatWindow">
+        <div class="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-4 rounded-t-lg flex justify-between items-center">
+            <h3 class="font-bold text-lg">🤖 مساعد التصميم الذكي</h3>
+            <button onclick="toggleChat()" class="text-white hover:text-gray-200 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-4 bg-gray-50" id="chatMessages">
+            <div class="message bot-message">
+                🤖 <strong>مرحباً! أنا مساعدك الذكي المتطور</strong><br><br>
+                🎨 <strong>في التصميم والديكور:</strong><br>
+                • اختيار الألوان المناسبة<br>
+                • حساب التكاليف والمواد<br>
+                • نصائح التصميم المتخصصة<br>
+                • جدولة المشاريع<br><br>
+                📱 <strong>في المهام اليومية:</strong><br>
+                • معرفة الوقت والتاريخ<br>
+                • نصائح الطقس للدهان<br>
+                • حسابات ذكية<br>
+                • تذكيرات مخصصة<br><br>
+                💬 <strong>اسألني أي شيء وستندهش من ذكائي!</strong>
+            </div>
+        </div>
+        <div class="p-4 border-t bg-white rounded-b-lg">
+            <div class="flex gap-2">
+                <input type="text" id="chatInput" placeholder="اكتب رسالتك هنا..." class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 text-lg" onkeypress="handleChatKeyPress(event)">
+                <button onclick="sendMessage()" class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-3 rounded-lg font-bold transition-all">
+                    إرسال
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تحديث عداد الزيارات
+        function updateVisitorCount() {
+            const count = document.getElementById('visitorsCount');
+            let currentCount = parseInt(count.textContent.replace(',', ''));
+            
+            setInterval(() => {
+                currentCount += Math.floor(Math.random() * 3) + 1;
+                count.textContent = currentCount.toLocaleString();
+            }, 30000); // كل 30 ثانية
+        }
+
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+            
+            const fadeElements = document.querySelectorAll('.fade-in:not(.visible)');
+            const slideLeftElements = document.querySelectorAll('.slide-in-left:not(.visible)');
+            const slideRightElements = document.querySelectorAll('.slide-in-right:not(.visible)');
+            
+            [...fadeElements, ...slideLeftElements, ...slideRightElements].forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        });
+
+        function toggleMenu() {
+            console.log('Toggle mobile menu');
+        }
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatToggle = document.querySelector('.chat-toggle');
+            
+            if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+                chatWindow.style.display = 'flex';
+                setTimeout(() => {
+                    chatWindow.classList.add('show');
+                }, 10);
+                chatToggle.style.display = 'none';
+            } else {
+                chatWindow.classList.remove('show');
+                setTimeout(() => {
+                    chatWindow.style.display = 'none';
+                    chatToggle.style.display = 'flex';
+                }, 300);
+            }
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const service = formData.get('service');
+            const details = formData.get('details');
+            
+            const message = `🎨 *طلب جديد من موقع شركة التحدي*
+
+👤 *الاسم:* ${name}
+📱 *الهاتف:* ${phone}
+🛠️ *نوع الخدمة:* ${service}
+
+📝 *تفاصيل المشروع:*
+${details}
+
+---
+تم الإرسال من موقع شركة التحدي للديكورات الخشبية والأصباغ`;
+
+            const whatsappNumber = '96550291741';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            
+            const button = event.target.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+            
+            button.innerHTML = `
+                <div class="flex items-center justify-center space-x-reverse space-x-3">
+                    <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
+                    <span>جاري التحويل للواتساب...</span>
+                </div>
+            `;
+            button.disabled = true;
+            
+            setTimeout(() => {
+                window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+                showSuccessMessage('تم تحويلك للواتساب بنجاح! 🎉');
+                
+                setTimeout(() => {
+                    event.target.reset();
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 2000);
+            }, 1500);
+        }
+
+        function requestService(serviceName) {
+            const message = `🎨 *طلب خدمة من موقع شركة التحدي*
+
+🛠️ *الخدمة المطلوبة:* ${serviceName}
+
+أريد الحصول على استشارة مجانية وعرض سعر لهذه الخدمة.
+
+الرجاء التواصل معي في أقرب وقت ممكن.
+
+---
+تم الإرسال من موقع شركة التحدي للديكورات الخشبية والأصباغ`;
+
+            const whatsappNumber = '96550291741';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+            showSuccessMessage(`تم طلب خدمة ${serviceName} بنجاح! 🎨`);
+        }
+
+        function showSuccessMessage(message) {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'fixed top-4 right-4 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-4 rounded-2xl shadow-2xl z-50 transform translate-x-full transition-all duration-500';
+            successDiv.innerHTML = `
+                <div class="flex items-center space-x-reverse space-x-3">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="text-lg font-bold">${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                successDiv.style.transform = 'translateX(full)';
+                setTimeout(() => {
+                    if (successDiv.parentNode) {
+                        document.body.removeChild(successDiv);
+                    }
+                }, 500);
+            }, 4000);
+        }
+
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            addMessage(message, 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                const response = getSmartResponse(message);
+                addMessage(response, 'bot');
+            }, 1000 + Math.random() * 1000);
+        }
+
+        function getSmartResponse(message) {
+            const msg = message.toLowerCase();
+            
+            // الذكاء الاصطناعي المتقدم للمساعدة في المهام اليومية
+            
+            // مساعدة في التصميم والديكور
+            if (msg.includes('سعر') || msg.includes('تكلفة') || msg.includes('كم')) {
+                return '💰 <strong>حاسبة التكلفة الذكية:</strong><br><br>الأسعار تختلف حسب عدة عوامل:<br><br>📏 <strong>المساحة:</strong><br>• غرفة صغيرة (12م²): 150-250 د.ك<br>• غرفة متوسطة (20م²): 250-400 د.ك<br>• غرفة كبيرة (30م²): 400-600 د.ك<br><br>🎨 <strong>نوع الخدمة:</strong><br>• دهانات فقط: 8-15 د.ك/م²<br>• ديكور خشبي: 25-50 د.ك/م²<br>• باقة شاملة: 35-70 د.ك/م²<br><br>📱 أرسل لي مساحة غرفتك وسأحسب لك التكلفة التقريبية فوراً!';
+            }
+            
+            if (msg.includes('لون') || msg.includes('ألوان') || msg.includes('اختيار')) {
+                return '🎨 <strong>مستشار الألوان الذكي:</strong><br><br>🏠 <strong>حسب نوع الغرفة:</strong><br>• غرف النوم: بيج، رمادي فاتح، أزرق هادئ<br>• غرف المعيشة: كريمي، بني فاتح، أخضر زيتوني<br>• المطابخ: أبيض، رمادي، أزرق فاتح<br>• الحمامات: أبيض، تركوازي، رمادي<br><br>🌟 <strong>نصائح ذكية:</strong><br>• الألوان الفاتحة توسع المساحة<br>• الألوان الداكنة تضفي دفء<br>• استخدم 60% لون أساسي، 30% ثانوي، 10% مميز<br><br>📸 أرسل لي صورة غرفتك وسأقترح عليك أفضل الألوان!';
+            }
+            
+            if (msg.includes('خشب') || msg.includes('ديكور') || msg.includes('تصميم')) {
+                return '🪵 <strong>خبير الديكور الخشبي:</strong><br><br>🏆 <strong>أنواع الخشب المتاحة:</strong><br>• خشب الزان: قوي ومتين (35-50 د.ك/م²)<br>• خشب البلوط: فاخر وأنيق (50-80 د.ك/م²)<br>• MDF عالي الجودة: اقتصادي (20-35 د.ك/م²)<br><br>✨ <strong>تصاميم عصرية:</strong><br>• جدران خشبية ثلاثية الأبعاد<br>• أسقف معلقة بإضاءة مخفية<br>• رفوف عائمة مدمجة<br>• خزائن مخفية بتصميم ذكي<br><br>💡 <strong>نصيحة ذكية:</strong> امزج بين الخشب الطبيعي والإضاءة LED للحصول على تأثير مذهل!';
+            }
+
+            if (msg.includes('مدة') || msg.includes('وقت') || msg.includes('كم يوم') || msg.includes('متى')) {
+                return '⏰ <strong>جدولة المشاريع الذكية:</strong><br><br>📅 <strong>المدة حسب نوع المشروع:</strong><br>• غرفة واحدة (دهان): 1-2 يوم<br>• غرفة واحدة (ديكور): 3-5 أيام<br>• شقة صغيرة (2 غرف): 5-7 أيام<br>• شقة كبيرة (4 غرف): 10-14 يوم<br>• فيلا كاملة: 3-4 أسابيع<br><br>🚀 <strong>خدمة التتبع الذكي:</strong><br>• تحديثات يومية عبر الواتساب<br>• صور مباشرة لسير العمل<br>• إشعارات عند كل مرحلة<br><br>📱 أخبرني بنوع مشروعك وسأعطيك جدولة دقيقة!';
+            }
+
+            if (msg.includes('ضمان') || msg.includes('كفالة') || msg.includes('صيانة')) {
+                return '🛡️ <strong>ضمان التحدي الذهبي:</strong><br><br>✅ <strong>ضمانات شاملة:</strong><br>• دهانات: سنة كاملة<br>• أعمال خشبية: سنتان<br>• إضاءة وكهرباء: سنة<br>• تركيبات: 6 أشهر<br><br>🔧 <strong>خدمات مجانية:</strong><br>• صيانة دورية كل 6 أشهر<br>• إصلاح العيوب فوراً<br>• استبدال المواد المعيبة<br>• استشارات مجانية مدى الحياة<br><br>📞 خدمة عملاء 24/7 لأي طارئ!';
+            }
+
+            if (msg.includes('مواد') || msg.includes('جودة') || msg.includes('نوع')) {
+                return '🏆 <strong>مواد عالمية المستوى:</strong><br><br>🎨 <strong>الدهانات:</strong><br>• جوتن النرويجية (مقاومة للرطوبة)<br>• دولكس البريطانية (مضادة للبكتيريا)<br>• سيكنز الألمانية (صديقة للبيئة)<br>• كابارول الألمانية (عازلة للحرارة)<br><br>🪵 <strong>الخشب:</strong><br>• زان تركي طبيعي 100%<br>• بلوط أمريكي معالج<br>• MDF ألماني مقاوم للرطوبة<br><br>🌿 <strong>مواد صحية:</strong><br>• خالية من المواد الضارة<br>• مقاومة للحشرات<br>• مضادة للحساسية';
+            }
+
+            // مساعدة في المهام اليومية
+            if (msg.includes('وقت') || msg.includes('ساعة') || msg.includes('تاريخ')) {
+                const now = new Date();
+                const time = now.toLocaleTimeString('ar-KW');
+                const date = now.toLocaleDateString('ar-KW');
+                return `🕐 <strong>الوقت الحالي:</strong><br>الساعة: ${time}<br>التاريخ: ${date}<br><br>💡 <strong>نصيحة اليوم:</strong><br>أفضل وقت لبدء أعمال الدهان هو الصباح الباكر (8-10 ص) لضمان جفاف مثالي!`;
+            }
+
+            if (msg.includes('طقس') || msg.includes('جو') || msg.includes('حرارة')) {
+                return '🌤️ <strong>نصائح الطقس للدهان:</strong><br><br>☀️ <strong>الطقس المثالي:</strong><br>• درجة حرارة: 18-25°م<br>• رطوبة: أقل من 70%<br>• رياح: خفيفة<br><br>⚠️ <strong>تجنب الدهان في:</strong><br>• الأيام الممطرة<br>• الرطوبة العالية (+80%)<br>• الحرارة الشديدة (+35°م)<br><br>📱 سأتابع معك الطقس وأنصحك بأفضل الأوقات للعمل!';
+            }
+
+            if (msg.includes('حساب') || msg.includes('احسب') || msg.includes('كمية')) {
+                return '🧮 <strong>حاسبة المواد الذكية:</strong><br><br>📏 <strong>لحساب كمية الدهان:</strong><br>• المساحة × 0.15 = لتر دهان للطبقة الواحدة<br>• اضرب × 2 للطبقتين<br>• أضف 10% احتياطي<br><br>🪵 <strong>لحساب الخشب:</strong><br>• طول × عرض × سماكة = حجم بالمتر المكعب<br><br>💰 <strong>مثال سريع:</strong><br>غرفة 4×4 متر = 16م²<br>كمية الدهان = 16 × 0.15 × 2 = 4.8 لتر<br><br>📱 أرسل لي أبعاد غرفتك وسأحسب لك كل شيء!';
+            }
+
+            if (msg.includes('نصيحة') || msg.includes('اقتراح') || msg.includes('رأي')) {
+                const tips = [
+                    '💡 <strong>نصيحة ذهبية:</strong><br>استخدم الألوان الفاتحة في الأسقف لتبدو أعلى، والألوان الداكنة في الحوائط لتبدو أوسع!',
+                    '🎨 <strong>سر المحترفين:</strong><br>اطلي الحوائط بلونين متدرجين - فاتح في الأعلى وداكن في الأسفل لتأثير بصري مذهل!',
+                    '🪵 <strong>حيلة الديكور:</strong><br>أضف شرائح خشبية عمودية خلف التلفزيون لإضافة عمق وأناقة للغرفة!',
+                    '✨ <strong>إضاءة ذكية:</strong><br>استخدم LED مخفية خلف الأثاث الخشبي لإضاءة غير مباشرة تضفي دفء وراحة!',
+                    '🌿 <strong>لمسة طبيعية:</strong><br>امزج الخشب الطبيعي مع النباتات الخضراء لتصميم عصري ومريح للعين!'
+                ];
+                return tips[Math.floor(Math.random() * tips.length)];
+            }
+
+            if (msg.includes('مساعدة') || msg.includes('ساعدني') || msg.includes('محتاج')) {
+                return '🤖 <strong>مساعدك الذكي جاهز!</strong><br><br>🎯 <strong>يمكنني مساعدتك في:</strong><br><br>🏠 <strong>التصميم والديكور:</strong><br>• اختيار الألوان المناسبة<br>• حساب التكاليف والمواد<br>• تقديم نصائح التصميم<br>• جدولة المشاريع<br><br>📅 <strong>المهام اليومية:</strong><br>• معرفة الوقت والتاريخ<br>• نصائح الطقس للدهان<br>• حسابات المواد<br>• تذكيرات المواعيد<br><br>💬 <strong>فقط اكتب ما تحتاجه وسأساعدك فوراً!</strong>';
+            }
+
+            if (msg.includes('تذكير') || msg.includes('موعد') || msg.includes('ذكرني')) {
+                return '⏰ <strong>خدمة التذكيرات الذكية:</strong><br><br>📝 <strong>يمكنني تذكيرك بـ:</strong><br>• مواعيد بدء المشروع<br>• مواعيد الصيانة الدورية<br>• أوقات جفاف الدهان<br>• مواعيد التسليم<br><br>📱 <strong>كيفية الاستخدام:</strong><br>اكتب: "ذكرني بـ [المهمة] في [الوقت]"<br><br>مثال: "ذكرني بموعد الدهان غداً الساعة 8 صباحاً"<br><br>✅ سأرسل لك تذكير عبر الواتساب في الوقت المحدد!';
+            }
+
+            // ردود ذكية متنوعة
+            const smartResponses = [
+                '🎨 <strong>مرحباً! أنا مساعدك الذكي المتطور</strong><br><br>🧠 <strong>قدراتي المتقدمة:</strong><br>• تحليل احتياجاتك بدقة<br>• حساب التكاليف والمواد<br>• اقتراح التصاميم المناسبة<br>• مساعدتك في المهام اليومية<br><br>💡 جرب أن تسألني عن أي شيء - الوقت، الطقس، حسابات، نصائح، أو أي مساعدة تحتاجها!',
+                
+                '🏠 <strong>أهلاً بك في عالم التصميم الذكي!</strong><br><br>🎯 <strong>خدماتي المتميزة:</strong><br>• استشارات تصميم فورية<br>• حسابات دقيقة للمواد والتكاليف<br>• نصائح مخصصة لمنزلك<br>• مساعدة في المهام اليومية<br><br>🚀 <strong>تقنية متطورة:</strong><br>أستخدم ذكاء اصطناعي متقدم لفهم احتياجاتك وتقديم أفضل الحلول!',
+                
+                '✨ <strong>مساعدك الشخصي للتصميم والحياة!</strong><br><br>🎨 <strong>في التصميم:</strong><br>• تحليل المساحات وتقديم الحلول<br>• اختيار الألوان بعلم نفس الألوان<br>• حسابات هندسية دقيقة<br><br>📱 <strong>في الحياة اليومية:</strong><br>• معلومات الوقت والطقس<br>• حسابات وتذكيرات<br>• نصائح ومساعدة فورية<br><br>💬 اسألني أي شيء وستندهش من ذكائي!'
+            ];
+            
+            return smartResponses[Math.floor(Math.random() * smartResponses.length)];
+        }
+
+        function addMessage(text, sender) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.innerHTML = text;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function requestQuote(designType) {
+            const message = `🎨 *طلب تصميم مشابه*
+
+أريد تصميم مشابه لـ: *${designType}*
+
+الرجاء التواصل معي لمناقشة التفاصيل وتقديم عرض سعر.
+
+---
+تم الإرسال من موقع شركة التحدي للديكورات الخشبية والأصباغ`;
+
+            const whatsappNumber = '96550291741';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+            showSuccessMessage('تم تحويلك للواتساب لطلب هذا التصميم! 🎨');
+        }
+
+        function openImageInWhatsApp(title, description) {
+            const message = `🎨 *استفسار عن تصميم من المعرض*
+
+📸 *التصميم:* ${title}
+
+📝 *الوصف:* ${description}
+
+أريد الحصول على:
+• تفاصيل أكثر عن هذا التصميم
+• عرض سعر مشابه لمنزلي
+• موعد للمعاينة والاستشارة
+
+---
+تم الإرسال من معرض شركة التحدي للديكورات الخشبية والأصباغ`;
+
+            const whatsappNumber = '96550291741';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+            showSuccessMessage(`تم إرسال استفسار عن ${title} للواتساب! 📱`);
+        }
+
+        // حماية متقدمة من لقطات الشاشة والنسخ
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            showProtectionAlert();
+            return false;
+        });
+
+        document.addEventListener('keydown', function(e) {
+            // منع جميع طرق لقطات الشاشة والنسخ
+            if (e.keyCode === 123 || // F12
+                e.keyCode === 44 || // Print Screen
+                e.keyCode === 42 || // Print Screen (alternative)
+                e.keyCode === 124 || // F13 (Print Screen on some keyboards)
+                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+                (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
+                (e.ctrlKey && e.shiftKey && e.keyCode === 67) || // Ctrl+Shift+C
+                (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
+                (e.ctrlKey && e.keyCode === 83) || // Ctrl+S
+                (e.ctrlKey && e.keyCode === 65) || // Ctrl+A
+                (e.ctrlKey && e.keyCode === 67) || // Ctrl+C
+                (e.ctrlKey && e.keyCode === 86) || // Ctrl+V
+                (e.ctrlKey && e.keyCode === 88) || // Ctrl+X
+                (e.ctrlKey && e.keyCode === 80) || // Ctrl+P
+                (e.altKey && e.keyCode === 115) || // Alt+F4
+                (e.ctrlKey && e.keyCode === 116) || // Ctrl+F5
+                (e.ctrlKey && e.shiftKey && e.keyCode === 116)) { // Ctrl+Shift+F5
+                e.preventDefault();
+                e.stopPropagation();
+                showProtectionAlert();
+                return false;
+            }
+        });
+
+        document.addEventListener('keyup', function(e) {
+            if (e.keyCode === 44 || e.keyCode === 42 || e.keyCode === 124) {
+                showProtectionAlert();
+            }
+        });
+
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // منع النسخ من خلال الماوس
+        document.addEventListener('mousedown', function(e) {
+            if (e.detail > 1) { // منع التحديد المتعدد
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // حماية من أدوات المطور - معطلة مؤقتاً
+        // let devtools = {
+        //     open: false,
+        //     orientation: null
+        // };
+
+        // const threshold = 160;
+
+        // setInterval(() => {
+        //     if (window.outerHeight - window.innerHeight > threshold || 
+        //         window.outerWidth - window.innerWidth > threshold) {
+        //         if (!devtools.open) {
+        //             devtools.open = true;
+        //             showDevToolsWarning();
+        //         }
+        //     } else {
+        //         devtools.open = false;
+        //     }
+        // }, 500);
+
+        // منع لقطات الشاشة من خلال API
+        if ('getDisplayMedia' in navigator.mediaDevices) {
+            const originalGetDisplayMedia = navigator.mediaDevices.getDisplayMedia;
+            navigator.mediaDevices.getDisplayMedia = function() {
+                showProtectionAlert();
+                return Promise.reject(new Error('Screen capture blocked'));
+            };
+        }
+
+        // حماية من التسجيل
+        if ('getUserMedia' in navigator.mediaDevices) {
+            const originalGetUserMedia = navigator.mediaDevices.getUserMedia;
+            navigator.mediaDevices.getUserMedia = function(constraints) {
+                if (constraints && constraints.video && constraints.video.mediaSource === 'screen') {
+                    showProtectionAlert();
+                    return Promise.reject(new Error('Screen recording blocked'));
+                }
+                return originalGetUserMedia.call(this, constraints);
+            };
+        }
+
+        // منع الطباعة
+        window.addEventListener('beforeprint', function(e) {
+            e.preventDefault();
+            showProtectionAlert();
+            return false;
+        });
+
+        window.addEventListener('afterprint', function(e) {
+            e.preventDefault();
+            showProtectionAlert();
+            return false;
+        });
+
+        // حماية من النسخ عبر الحافظة
+        document.addEventListener('copy', function(e) {
+            e.clipboardData.setData('text/plain', 'المحتوى محمي - شركة التحدي للديكورات');
+            e.preventDefault();
+            showProtectionAlert();
+        });
+
+        // مراقبة تغيير حجم النافذة (قد يشير لأدوات المطور)
+        let windowSize = {
+            width: window.innerWidth,
+            height: window.innerHeight
+        };
+
+        window.addEventListener('resize', function() {
+            const currentWidth = window.innerWidth;
+            const currentHeight = window.innerHeight;
+            
+            if (Math.abs(currentWidth - windowSize.width) > 100 || 
+                Math.abs(currentHeight - windowSize.height) > 100) {
+                // تغيير كبير في الحجم قد يشير لفتح أدوات المطور
+                setTimeout(() => {
+                    if (window.outerHeight - window.innerHeight > threshold || 
+                        window.outerWidth - window.innerWidth > threshold) {
+                        showDevToolsWarning();
+                    }
+                }, 100);
+            }
+            
+            windowSize.width = currentWidth;
+            windowSize.height = currentHeight;
+        });
+
+        function showProtectionAlert() {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[9999]';
+            alertDiv.innerHTML = `
+                <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl transform scale-95 animate-pulse">
+                    <div class="text-6xl mb-4">🛡️</div>
+                    <h3 class="text-2xl font-bold text-red-600 mb-4">محتوى محمي!</h3>
+                    <p class="text-gray-700 mb-6 text-lg">هذا المحتوى محمي من النسخ ولقطات الشاشة<br>للحصول على المعلومات تواصل معنا مباشرة</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-lg font-bold hover:from-orange-600 hover:to-orange-700 transition-all">
+                        فهمت
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.remove();
+                }
+            }, 5000);
+        }
+
+        function showDevToolsWarning() {
+            const warningDiv = document.createElement('div');
+            warningDiv.className = 'fixed top-0 left-0 w-full h-full bg-red-600 flex items-center justify-center z-[9999] text-white text-center';
+            warningDiv.innerHTML = `
+                <div class="max-w-2xl mx-4">
+                    <div class="text-8xl mb-6">⚠️</div>
+                    <h2 class="text-4xl font-bold mb-4">تحذير أمني!</h2>
+                    <p class="text-xl mb-6">تم اكتشاف محاولة الوصول لأدوات المطور<br>هذا المحتوى محمي بحقوق الطبع والنشر</p>
+                    <p class="text-lg opacity-90">سيتم إغلاق الصفحة خلال <span id="countdown">5</span> ثواني</p>
+                </div>
+            `;
+            
+            document.body.appendChild(warningDiv);
+            
+            let countdown = 5;
+            const countdownElement = warningDiv.querySelector('#countdown');
+            
+            const timer = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                
+                if (countdown <= 0) {
+                    clearInterval(timer);
+                    window.location.href = 'about:blank';
+                }
+            }, 1000);
+        }
+
+        // وظائف التحكم
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToBottom() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            localStorage.setItem('darkTheme', document.body.classList.contains('dark-theme'));
+        }
+
+        function scrollToService(serviceName) {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openMainGallery() {
+            // التمرير إلى قسم المعرض
+            document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openGalleryModal(serviceType) {
+            const modal = document.getElementById('galleryModal');
+            const title = document.getElementById('galleryTitle');
+            const content = document.getElementById('galleryContent');
+            
+            title.textContent = `📸 معرض ${serviceType}`;
+            
+            // محتوى المعرض حسب نوع الخدمة مع صور متنوعة
+            const galleryData = {
+                'دهانات داخلية': {
+                    images: [
+                        { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة معيشة بألوان هادئة', desc: 'دهانات داخلية بألوان عصرية مع لمسة نهائية مثالية' },
+                        { url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة نوم أنيقة', desc: 'دهانات مطفية بألوان مريحة للنوم' },
+                        { url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'صالة عائلية', desc: 'مزج رائع من الألوان الدافئة والباردة' },
+                        { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة طعام أنيقة', desc: 'ألوان داخلية تضفي دفء وراحة' },
+                        { url: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'ممر داخلي', desc: 'دهانات تجعل الممرات تبدو أوسع' },
+                        { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة جلوس', desc: 'ألوان مريحة للعين ومناسبة للاسترخاء' }
+                    ]
+                },
+                'دهانات خارجية': {
+                    images: [
+                        { url: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'واجهة منزل عصرية', desc: 'دهانات خارجية مقاومة للعوامل الجوية' },
+                        { url: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'فيلا فاخرة', desc: 'ألوان خارجية متناسقة مع الطبيعة' },
+                        { url: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'منزل تراثي', desc: 'دهانات تحافظ على الطابع التراثي' },
+                        { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'واجهة حجرية', desc: 'دهانات تحمي الحجر الطبيعي' },
+                        { url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'منزل ساحلي', desc: 'ألوان مقاومة للرطوبة والملح' },
+                        { url: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'فيلا حديثة', desc: 'تصميم معاصر بألوان جريئة' }
+                    ]
+                },
+                'دهانات مطفية': {
+                    images: [
+                        { url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة نوم هادئة', desc: 'دهانات مطفية تخفي العيوب وتضفي أناقة' },
+                        { url: 'https://images.unsplash.com/photo-1616137466211-f939a420be84?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مكتب منزلي', desc: 'ألوان مطفية تساعد على التركيز' },
+                        { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'صالة استقبال', desc: 'لمسة نهائية مطفية أنيقة وعصرية' },
+                        { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة قراءة', desc: 'أجواء هادئة مع دهانات مطفية' },
+                        { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة تأمل', desc: 'ألوان مطفية تبعث على الهدوء' },
+                        { url: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'صالة عائلية', desc: 'دهانات مطفية تقلل الانعكاسات' }
+                    ]
+                },
+                'دهانات لامعة': {
+                    images: [
+                        { url: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مطبخ عصري', desc: 'دهانات لامعة سهلة التنظيف والصيانة' },
+                        { url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'حمام أنيق', desc: 'بريق مميز مقاوم للرطوبة' },
+                        { url: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'ممر المنزل', desc: 'إضاءة طبيعية تعكس البريق اللامع' },
+                        { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مدخل المنزل', desc: 'دهانات لامعة تقاوم البقع' },
+                        { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة غسيل', desc: 'سطح لامع سهل التنظيف' },
+                        { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مطبخ كلاسيكي', desc: 'لمعان يضفي فخامة على المطبخ' }
+                    ]
+                },
+                'غرف النوم': {
+                    images: [
+                        { url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة نوم رئيسية', desc: 'ديكور خشبي خلف السرير مع إضاءة مخفية' },
+                        { url: 'https://images.unsplash.com/photo-1616137466211-f939a420be84?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة أطفال', desc: 'تصميم آمن ومريح للأطفال' },
+                        { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة ضيوف', desc: 'أناقة وبساطة في التصميم' },
+                        { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة نوم عصرية', desc: 'خزائن مدمجة وإضاءة ذكية' },
+                        { url: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة نوم كلاسيكية', desc: 'ديكور خشبي تقليدي بلمسة عصرية' },
+                        { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة نوم مراهقين', desc: 'تصميم شبابي وعملي' },
+                        { url: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة نوم فاخرة', desc: 'خشب طبيعي وتفاصيل ذهبية' },
+                        { url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة نوم مينيمال', desc: 'بساطة وأناقة في التصميم' }
+                    ]
+                },
+                'صالات الاستقبال': {
+                    images: [
+                        { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'صالة فاخرة', desc: 'ديكور خشبي فاخر مع إضاءة مميزة' },
+                        { url: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'صالة عائلية', desc: 'تصميم مريح للعائلة والضيوف' },
+                        { url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'صالة عصرية', desc: 'مزج بين الحداثة والأناقة' },
+                        { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'صالة كلاسيكية', desc: 'أثاث خشبي تقليدي مع لمسة عصرية' },
+                        { url: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'صالة مفتوحة', desc: 'تصميم مفتوح يربط المساحات' },
+                        { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'صالة رسمية', desc: 'أناقة وفخامة لاستقبال الضيوف' },
+                        { url: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'صالة مودرن', desc: 'خطوط نظيفة وتصميم معاصر' }
+                    ]
+                },
+                'ديوانيات ومجالس': {
+                    images: [
+                        { url: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'ديوانية تراثية', desc: 'تصميم تراثي بلمسة عصرية' },
+                        { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مجلس رجال', desc: 'فخامة وأناقة في التصميم' },
+                        { url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مجلس نساء', desc: 'ألوان هادئة وتصميم مريح' },
+                        { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'ديوانية عصرية', desc: 'مزج بين التراث والحداثة' },
+                        { url: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مجلس خارجي', desc: 'ديوانية في الحديقة أو الفناء' },
+                        { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مجلس فاخر', desc: 'تفاصيل خشبية منحوتة يدوياً' },
+                        { url: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'ديوانية مختلطة', desc: 'مساحة مشتركة للعائلة والضيوف' }
+                    ]
+                },
+                'المطابخ': {
+                    images: [
+                        { url: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مطبخ عصري', desc: 'تصميم عملي وأنيق للمطابخ الحديثة' },
+                        { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مطبخ أمريكي', desc: 'مطبخ مفتوح على الصالة' },
+                        { url: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مطبخ كلاسيكي', desc: 'خزائن خشبية عالية الجودة' },
+                        { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مطبخ مودرن', desc: 'تقنيات حديثة وتصميم أنيق' },
+                        { url: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مطبخ فاخر', desc: 'مواد عالية الجودة وتشطيبات مميزة' },
+                        { url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مطبخ صغير', desc: 'استغلال أمثل للمساحات الصغيرة' },
+                        { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مطبخ ريفي', desc: 'طابع ريفي دافئ ومريح' }
+                    ]
+                },
+                'الحمامات': {
+                    images: [
+                        { url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'حمام رئيسي', desc: 'تصميم عصري مقاوم للرطوبة' },
+                        { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'حمام ضيوف', desc: 'بساطة وأناقة في التصميم' },
+                        { url: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'حمام أطفال', desc: 'تصميم آمن ومناسب للأطفال' },
+                        { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'حمام فاخر', desc: 'مواد طبيعية وتشطيبات راقية' },
+                        { url: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'حمام مودرن', desc: 'تقنيات حديثة وتصميم معاصر' },
+                        { url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'حمام صغير', desc: 'حلول ذكية للمساحات المحدودة' }
+                    ]
+                },
+                'المكاتب المنزلية': {
+                    images: [
+                        { url: 'https://images.unsplash.com/photo-1616137466211-f939a420be84?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مكتب منزلي', desc: 'مساحة عمل مريحة ومحفزة للإنتاجية' },
+                        { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مكتبة منزلية', desc: 'رفوف خشبية أنيقة للكتب' },
+                        { url: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'غرفة دراسة', desc: 'بيئة هادئة للدراسة والعمل' },
+                        { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مكتب تنفيذي', desc: 'تصميم راقي للمدراء والمسؤولين' },
+                        { url: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مكتب إبداعي', desc: 'مساحة ملهمة للعمل الإبداعي' },
+                        { url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', title: 'مكتب مشترك', desc: 'مساحة عمل للعائلة أو الشركاء' }
+                    ]
+                }
+            };
+            
+            const data = galleryData[serviceType] || galleryData['دهانات داخلية'];
+            
+            content.innerHTML = `
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    ${data.images.map(img => `
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer" onclick="openImageInWhatsApp('${img.title}', '${img.desc}')">
+                            <div class="h-48 bg-gradient-to-br from-gray-200 to-gray-300 relative overflow-hidden">
+                                <img src="${img.url}" alt="${img.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <h4 class="font-bold text-lg">${img.title}</h4>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <p class="text-gray-600 mb-3">${img.desc}</p>
+                                <div class="text-center text-orange-600 font-bold">
+                                    📱 اضغط للتواصل عبر الواتساب
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-6 text-white">
+                        <h4 class="text-2xl font-bold mb-3">هل أعجبك ما رأيت؟</h4>
+                        <p class="text-lg mb-4 opacity-90">تواصل معنا الآن للحصول على تصميم مشابه لمنزلك</p>
+                        <button onclick="requestService('${serviceType}')" class="bg-white text-orange-600 px-8 py-3 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all">
+                            اطلب عرض سعر مجاني
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // استعادة المظهر المحفوظ
+        if (localStorage.getItem('darkTheme') === 'true') {
+            document.body.classList.add('dark-theme');
+        }
+
+        window.addEventListener('load', function() {
+            updateVisitorCount();
+            
+            setTimeout(() => {
+                const welcomeToast = document.createElement('div');
+                welcomeToast.className = 'fixed bottom-24 right-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-4 rounded-2xl shadow-2xl z-40 transform translate-x-full transition-all duration-500';
+                welcomeToast.innerHTML = `
+                    <div class="flex items-center space-x-reverse space-x-3">
+                        <span class="text-2xl">👋</span>
+                        <div>
+                            <p class="font-bold">مرحباً بك في شركة التحدي!</p>
+                            <p class="text-sm opacity-90">للديكورات الخشبية والأصباغ</p>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(welcomeToast);
+                
+                setTimeout(() => {
+                    welcomeToast.style.transform = 'translateX(0)';
+                }, 100);
+                
+                setTimeout(() => {
+                    welcomeToast.style.transform = 'translateX(full)';
+                    setTimeout(() => {
+                        if (welcomeToast.parentNode) {
+                            document.body.removeChild(welcomeToast);
+                        }
+                    }, 500);
+                }, 5000);
+            }, 2000);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98a331750132a10c',t:'MTc1OTczMzA5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+
+
+
+
+
+
+<!-- ======= قسم "بعض أعمالنا" ======= -->
+<style>
+  .float-works-btn {
+    position: fixed;
+    bottom: 100px; /* تحت زر الثيم */
+    right: 3px;
+    
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #fff;
+    border: none;
+    padding: 19px 18px;
+    border-radius: 50%;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(249,115,22,0.4);
+    z-index: 9999;
+    transition: all 0.3s ease;
+  }
+  .float-works-btn:hover { transform: scale(1.1); }
+
+  .works-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+  }
+  .works-content {
+    background: #fff;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .works-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #f97316, #ea580c);
+    color: #fff;
+    padding: 20px 25px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+  }
+  .works-header h2 { font-size: 22px; font-weight: 700; margin: 0; }
+  .works-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: contain;
+    background: #fff;
+    padding: 4px;
+  }
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
+    gap: 20px;
+    padding: 25px;
+  }
+  .works-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .works-card:hover { transform: translateY(-5px); }
+  .works-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .works-card-content { padding: 14px; }
+  .works-card h3 { color: #f97316; font-size: 18px; margin-bottom: 6px; }
+  .works-card p { color: #555; font-size: 14px; }
+  .whats-btn {
+    display: inline-block;
+    margin-top: 10px;
+    background: linear-gradient(90deg,#10b981,#059669);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .works-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .works-section {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .works-btn-main {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 14px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(249,115,22,0.3);
+    transition: all 0.3s ease;
+  }
+  .works-btn-main:hover { transform: scale(1.05); }
+  .designer-credit {
+    text-align: center;
+    font-size: 15px;
+    color: #555;
+    padding: 15px;
+    background: #f9fafb;
+    border-top: 1px solid #eee;
+  }
+  .designer-credit span { color: #f97316; font-weight: 700; }
+</style>
+
+<!-- زرار عائم تحت زر الثيم -->
+<button class="float-works-btn" onclick="openWorksModal()" title="بعض أعمالنا">🎨</button>
+
+<!-- نافذة المعرض -->
+<div id="worksModal" class="works-modal">
+  <div class="works-content">
+    <div class="works-header">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <img src="images/logo.jpg" 
+             alt="شعار شركة التحدي" 
+             class="works-logo">
+        <h2>شركة التحدي - بعض أعمالنا المميزة</h2>
+      </div>
+      <button class="works-close" onclick="closeWorksModal()">✖</button>
+    </div>
+    <div class="works-grid" id="worksGallery"></div>
+  </div>
+</div>
+
+<!-- الزر في آخر الصفحة + توقيع -->
+<section class="works-section">
+  <button class="works-btn-main" onclick="openWorksModal()">🎨 بعض أعمالنا</button>
+  <div class="designer-credit" style="margin-top:15px;">
+    تم تصميم هذا الموقع بواسطة <span>المهندس أحمد حسن</span> — 
+    <a href="tel:+201029492347" style="color:#10b981;text-decoration:none;">+201029492347</a>
+  </div>
+</section>
+
+<script>
+const whatsappNumber = '96550291741';
+
+const works = [
+  'IMG-20251005-WA0028.jpg','IMG-20251005-WA0029.jpg','IMG-20251005-WA0030.jpg',
+  'IMG-20251005-WA0031.jpg','IMG-20251005-WA0032.jpg','IMG-20251005-WA0033.jpg',
+  'IMG-20251005-WA0034.jpg','IMG-20251005-WA0035.jpg','IMG-20251005-WA0036.jpg',
+  'IMG-20251006-WA0037.jpg','IMG-20251006-WA0038.jpg','IMG-20251006-WA0039.jpg',
+  'IMG-20251006-WA0040.jpg','IMG-20251006-WA0041.jpg','IMG-20251006-WA0042.jpg',
+  'IMG-20251006-WA0043.jpg','IMG-20251006-WA0044.jpg','IMG-20251006-WA0045.jpg',
+  'IMG-20251006-WA0046.jpg'
+];
+
+function openWorksModal() {
+  const modal = document.getElementById('worksModal');
+  const gallery = document.getElementById('worksGallery');
+  gallery.innerHTML = '';
+  works.forEach((file, index) => {
+    const card = document.createElement('div');
+    card.className = 'works-card';
+    const img = document.createElement('img');
+    img.src = `images/${file}`;
+    const content = document.createElement('div');
+    content.className = 'works-card-content';
+    const h3 = document.createElement('h3');
+    h3.textContent = `عمل رقم ${index + 1}`;
+    const p = document.createElement('p');
+    p.textContent = 'أحد أعمال شركة التحدي في مجال الدهانات والديكور والتشطيبات الحديثة.';
+    const a = document.createElement('a');
+    a.className = 'whats-btn';
+    a.href = '#';
+    a.textContent = 'اطلب عبر واتساب';
+    a.onclick = (e) => { 
+      e.preventDefault(); 
+      openImageInWhatsApp(h3.textContent, p.textContent); 
+    };
+    content.append(h3, p, a);
+    card.append(img, content);
+    gallery.append(card);
+  });
+  modal.style.display = 'flex';
+}
+
+function closeWorksModal() {
+  document.getElementById('worksModal').style.display = 'none';
+}
+
+function openImageInWhatsApp(title, desc) {
+  const msg = `🎨 *استفسار حول أحد أعمال شركة التحدي*\n\n📌 *العمل:* ${title}\n📝 *الوصف:* ${desc}\n\nيرجى تزويدي بالتفاصيل.`;
+  window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+</script>
+<!-- ======= نهاية القسم ======= -->===== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
